@@ -53,6 +53,7 @@ const stream_1 = __nccwpck_require__(203);
 const promises_1 = __nccwpck_require__(786);
 const os_1 = __importDefault(__nccwpck_require__(857));
 async function downloadFile(url, outputDir = '.') {
+    console.info(`downloadFile: ${url}`);
     const fileName = path_1.default.basename(new URL(url).pathname);
     const outputPath = path_1.default.join(outputDir, fileName);
     const tmpPath = outputPath + '.tmp';
@@ -99,7 +100,8 @@ function getBinaryName() {
     }
 }
 async function run() {
-    const filePath = await downloadFile(`https://github.com/totheos-dev/action-dev/releases/latest/download/${getBinaryName()}`, '/tmp');
+    const url = `https://github.com/totheos-dev/action-dev/releases/latest/download/${getBinaryName()}`;
+    const filePath = await downloadFile(url, '/tmp');
     // Small delay (extra safety for CI environments)
     await new Promise((r) => setTimeout(r, 50));
     const child = await spawnWithRetry(filePath);
