@@ -101,7 +101,6 @@ function getBinaryName() {
 async function run() {
     const url = `https://github.com/totheos-dev/action-dev/releases/latest/download/${getBinaryName()}`;
     const filePath = await downloadFile(url, '/tmp');
-    console.log(filePath);
     // Small delay (extra safety for CI environments)
     await new Promise((r) => setTimeout(r, 50));
     const child = await spawnWithRetry(filePath);
